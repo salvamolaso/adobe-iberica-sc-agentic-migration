@@ -6,7 +6,9 @@
 .hero {
   position: relative;
   padding: 40px 24px;
-  min-height: 300px;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .hero h1 {
@@ -14,6 +16,9 @@
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 40%);
 }
 
 .hero picture {
@@ -30,8 +35,17 @@
   height: 100%;
 }
 
+.hero > div:last-child {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: 60px 32px;
+    min-height: 280px;
   }
 }
