@@ -1,0 +1,19 @@
+{
+  "templates": [
+    {
+      "name": "sede-madrid-descriptivo",
+      "urls": [
+        "https://sede.madrid.es/portal/site/tramites/menuitem.1f3361415fda829be152e15284f1a5a0/?vgnextoid=defd2a8011d9b410VgnVCM2000000c205a0aRCRD&vgnextchannel=465446ed8e456610VgnVCM2000001f4a900aRCRD&vgnextfmt=default"
+      ],
+      "description": "Sede Madrid descriptive/informational page template with article content, embedded video, and related links sections",
+      "blocks": [
+        {
+          "name": "embed",
+          "instances": [
+            ".contenedor-responsivo"
+          ]
+        }
+      ]
+    }
+  ]
+}
