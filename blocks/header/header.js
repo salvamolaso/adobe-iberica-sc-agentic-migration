@@ -172,9 +172,9 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // Collect all sections from the fragment
-  // Sections: 0=brand, 1=main-menu, 2=sub-menu, 3=most-watched, 4=tools
+  // Sections: 0=brand, 1=main-menu, 2=sub-menu, 3=most-watched, 4=tools, 5=banner-bg
   const sections = [...fragment.children];
-  const sectionNames = ['brand', 'main-menu', 'sub-menu', 'most-watched', 'tools'];
+  const sectionNames = ['brand', 'main-menu', 'sub-menu', 'most-watched', 'tools', 'banner-bg'];
   sections.forEach((section, i) => {
     if (sectionNames[i]) {
       section.classList.add(`nav-${sectionNames[i]}`);
@@ -188,6 +188,7 @@ export default async function decorate(block) {
     subMenuSection,
     mostWatchedSection,
     toolsSection,
+    bannerBgSection,
   ] = sections;
 
   // Create nav element
@@ -278,6 +279,16 @@ export default async function decorate(block) {
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.appendChild(nav);
+
+  // Banner background image from authored content (section 6)
+  if (bannerBgSection) {
+    const picture = bannerBgSection.querySelector('picture');
+    if (picture) {
+      picture.classList.add('nav-wrapper-bg');
+      navWrapper.prepend(picture);
+    }
+  }
+
   block.appendChild(navWrapper);
 
   // Insert bg-fluid1 after header
