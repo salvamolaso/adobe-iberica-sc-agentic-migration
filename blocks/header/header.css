@@ -7,6 +7,10 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: relative;
+  background-image: url('https://sede.madrid.es/FWProjects/tramites/nuevoMadrid/secciones/Ciudadanos/SedeCiudadanos_1400X351.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 header nav {
@@ -32,6 +36,9 @@ header .nav-top-bar {
   padding: 16px 24px;
   flex-wrap: wrap;
   gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 0;
 }
 
 @media (width >= 900px) {
@@ -119,10 +126,27 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 /* ========================================
+   SITE TITLE ("Sede electrónica del Ayuntamiento de Madrid")
+   ======================================== */
+header .nav-site-title {
+  order: 2;
+  flex: 1;
+  display: none;
+  align-self: flex-start;
+}
+
+header .nav-site-title a:any-link {
+  color: #fff;
+  font-family: var(--heading-font-family, Lato, Arial, sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ========================================
    BRAND (Madrid logo)
    ======================================== */
 header .nav-brand {
-  order: 2;
+  order: 3;
   flex: 1;
   text-align: center;
 }
@@ -143,17 +167,12 @@ header .nav-brand img {
   filter: brightness(0) invert(1);
 }
 
-@media (width >= 900px) {
-  header .nav-brand img {
-    height: 60px;
-  }
-}
 
 /* ========================================
    TOOLS (search icon)
    ======================================== */
 header .nav-tools {
-  order: 3;
+  order: 4;
   margin-left: 16px;
 }
 
@@ -162,13 +181,15 @@ header .nav-tools .default-content-wrapper {
   align-items: center;
 }
 
-header .nav-tools a:any-link {
+header .nav-tools a:any-link,
+header .nav-search-item a:any-link {
   color: #fff;
   font-size: 0;
   display: flex;
   align-items: center;
 }
 
+header .nav-search-item a::before,
 header .nav-tools a::before {
   content: '';
   display: inline-block;
@@ -195,8 +216,7 @@ header .nav-tools p {
    MAIN MENU (Sede Electrónica, Actualidad, etc.)
    ======================================== */
 header .nav-main-menu {
-  order: 4;
-  width: 100%;
+  order: 5;
   display: none;
 }
 
@@ -219,7 +239,7 @@ header .nav-main-menu ul li {
 }
 
 header .nav-main-menu ul li a:any-link {
-  color: var(--link-color, #003df6);
+  color: #333;
   font-family: var(--heading-font-family, Lato, Arial, sans-serif);
   font-size: 18px;
   padding: 8px 14px;
@@ -228,18 +248,81 @@ header .nav-main-menu ul li a:any-link {
   transition: color var(--transition-base, 0.2s ease);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
+header .nav-main-menu ul li:first-child a:any-link {
+  color: var(--link-color, #003df6);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-main-menu ul li a:hover {
   text-decoration: underline;
   color: var(--link-hover-color, #0000e1);
 }
 
 @media (width >= 900px) {
-  header .nav-main-menu {
-    display: block;
+  header .nav-top-bar {
+    flex-wrap: wrap;
+    position: relative;
   }
 
+  header .nav-site-title {
+    display: block;
+    order: 1;
+    flex: 1;
+  }
+
+  header .nav-brand {
+    order: 2;
+    flex: none;
+    text-align: right;
+  }
+
+  header .nav-main-menu {
+    display: flex;
+    order: 4;
+    flex-basis: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin: 0 -32px -16px;
+    padding: 0 32px;
+    height: 60px;
+  }
+
+  header .nav-tools {
+    display: none;
+  }
+
+  header .nav-main-menu .default-content-wrapper {
+    position: relative;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  header .nav-search-item {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  header .nav-main-menu ul li.nav-search-item a:any-link {
+    font-size: 0;
+    padding: 8px;
+  }
+
+  header .nav-main-menu ul li.nav-search-item a::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+  }
+
+  header .nav-main-menu ul {
+    margin: 0;
+    width: 100%;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
   header .nav-main-menu ul li a:any-link {
-    font-size: 20px;
+    font-size: 22px;
     padding: 8px 16px;
   }
 }
@@ -266,22 +349,12 @@ header .nav-main-menu ul li a:hover {
    BANNER ("SEDE ELECTRÓNICA" with bg image)
    ======================================== */
 header .nav-banner {
-  background-image: url('https://sede.madrid.es/FWProjects/tramites/nuevoMadrid/secciones/Ciudadanos/SedeCiudadanos_1400X351.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent;
   position: relative;
   min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-header .nav-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgb(0 0 0 / 30%);
 }
 
 header .nav-banner-content {
@@ -294,7 +367,7 @@ header .nav-banner-content {
 header .nav-banner-title {
   color: #fff;
   font-family: var(--heading-font-family, Lato, Arial, sans-serif);
-  font-size: 36px;
+  font-size: 3.3em;
   font-weight: 400;
   letter-spacing: normal;
   text-shadow: 0 1px 4px rgb(0 0 0 / 50%);
@@ -306,7 +379,7 @@ header .nav-banner-title {
   }
 
   header .nav-banner-title {
-    font-size: 45px;
+    font-size: 2.8125em;
   }
 }
 
@@ -334,11 +407,13 @@ header .nav-section-heading {
    ======================================== */
 header .nav-sub-menu {
   background: transparent;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 header .nav-sub-menu .default-content-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 header .nav-sub-menu ul {
@@ -346,12 +421,14 @@ header .nav-sub-menu ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: stretch;
+  flex-wrap: nowrap;
 }
 
 header .nav-sub-menu ul li {
   margin: 0;
+  flex: 1;
+  text-align: center;
   background-color: rgb(0 0 0 / 51%);
 }
 
@@ -360,6 +437,7 @@ header .nav-sub-menu ul li.active {
   background-color: var(--link-color, #003df6);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sub-menu ul li a:any-link {
   color: #fff;
   font-family: var(--heading-font-family, Lato, Arial, sans-serif);
@@ -367,10 +445,16 @@ header .nav-sub-menu ul li a:any-link {
   padding: 10px 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
   white-space: nowrap;
   transition: background-color var(--transition-base, 0.2s ease);
 }
 
+header .nav-sub-menu ul li + li {
+  border-left: 1px solid rgb(255 255 255 / 30%);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sub-menu ul li a:hover {
   text-decoration: underline;
 }
@@ -381,169 +465,3 @@ header .nav-sub-menu ul li a:hover {
   }
 }
 
-/* ========================================
-   BG-FLUID1 (Lo más visto + breadcrumbs)
-   Inserted AFTER <header> by header.js
-   ======================================== */
-/* stylelint-disable-next-line selector-class-pattern */
-.bg-fluid1.fluid1--main {
-  background-color: #f4f3f3;
-  border-bottom: 1px solid var(--border-color, #e3e1e1);
-}
-
-.bg-fluid1-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-@media (width >= 900px) {
-  .bg-fluid1-container {
-    padding: 0 32px;
-  }
-}
-
-/* --- Most Watched --- */
-.most-watched {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-color, #e3e1e1);
-  gap: 16px;
-}
-
-.mw-title {
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 400;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.mw-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  font-size: 16px;
-  color: #666;
-  cursor: help;
-}
-
-.mw-content {
-  flex: 1;
-  overflow: hidden;
-}
-
-.mw-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  overflow-x: auto;
-}
-
-.mw-item {
-  margin: 0;
-  white-space: nowrap;
-  padding: 0 9px 0 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 300px;
-}
-
-.mw-item:first-child {
-  padding-left: 0;
-}
-
-.mw-separator {
-  color: #999;
-  padding: 0 2px;
-  flex-shrink: 0;
-}
-
-.bg-fluid1-container .mw-item a:any-link {
-  color: var(--link-color, #003df6);
-  text-decoration: none;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-}
-
-.bg-fluid1-container .mw-item a:any-link:hover {
-  text-decoration: underline;
-}
-
-/* --- Breadcrumbs --- */
-.bg-fluid1-container .breadcrumbs {
-  list-style: none;
-  padding: 5px 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  align-items: center;
-  font-size: 16px;
-}
-
-.bg-fluid1-container .breadcrumbs li {
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-
-.bg-fluid1-container .breadcrumbs li + li::before {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 5px solid #999;
-  margin: 0 8px;
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-.bg-fluid1-container .breadcrumbs li a:any-link {
-  color: var(--link-color, #003df6);
-  text-decoration: none;
-}
-
-.bg-fluid1-container .breadcrumbs li a:any-link:hover {
-  text-decoration: underline;
-}
-
-.bg-fluid1-container .breadcrumbs li .bc-item {
-  color: #333;
-}
-
-.bg-fluid1-container .breadcrumbs li a.bc-item {
-  color: var(--link-color, #003df6);
-}
-
-.bg-fluid1-container .breadcrumbs .bc-item-home {
-  display: inline-flex;
-  align-items: center;
-}
-
-.bg-fluid1-container .breadcrumbs .bc-item-home span {
-  font-size: 0;
-}
-
-.bg-fluid1-container .breadcrumbs .bc-item-home::before {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-
-  /* home icon */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23003df6' viewBox='0 0 24 24'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-}

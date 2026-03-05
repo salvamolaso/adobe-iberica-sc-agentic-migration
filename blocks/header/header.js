@@ -207,16 +207,35 @@ export default async function decorate(block) {
   </button>`;
   topBar.appendChild(hamburger);
 
-  // Brand (Madrid logo)
+  // Site title (left) + Brand logo (right)
+  const siteTitle = document.createElement('div');
+  siteTitle.className = 'nav-site-title';
+  const siteTitleLink = document.createElement('a');
+  siteTitleLink.href = '/';
+  siteTitleLink.textContent = 'Sede electrónica del Ayuntamiento de Madrid';
+  siteTitle.appendChild(siteTitleLink);
+  topBar.appendChild(siteTitle);
+
   if (brandSection) topBar.appendChild(brandSection);
 
-  // Search toggle
-  if (toolsSection) topBar.appendChild(toolsSection);
-
-  // Main menu (Sede Electrónica, Actualidad, etc.)
-  if (mainMenuSection) topBar.appendChild(mainMenuSection);
+  // Main menu (Sede Electrónica, Actualidad, etc.) with search toggle inside
+  if (mainMenuSection) {
+    if (toolsSection) {
+      const menuList = mainMenuSection.querySelector('ul');
+      if (menuList) {
+        const searchLi = document.createElement('li');
+        searchLi.className = 'nav-search-item';
+        searchLi.appendChild(toolsSection.querySelector('a') || toolsSection.querySelector('p'));
+        menuList.appendChild(searchLi);
+      }
+    }
+    topBar.appendChild(mainMenuSection);
+  }
 
   nav.appendChild(topBar);
+
+  // === BG-FLUID1 (Lo más visto + breadcrumbs) — inserted after header ===
+  const bgFluid = buildBgFluid(mostWatchedSection);
 
   // === BANNER ("SEDE ELECTRÓNICA" with background image) ===
   const banner = document.createElement('div');
@@ -261,8 +280,7 @@ export default async function decorate(block) {
   navWrapper.appendChild(nav);
   block.appendChild(navWrapper);
 
-  // === BG-FLUID1 (Lo más visto + breadcrumbs) — inserted AFTER <header> ===
-  const bgFluid = buildBgFluid(mostWatchedSection);
+  // Insert bg-fluid1 after header
   const headerEl = block.closest('header');
   if (headerEl) {
     headerEl.after(bgFluid);
