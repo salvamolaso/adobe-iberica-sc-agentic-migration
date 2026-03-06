@@ -291,9 +291,6 @@ export default async function decorate(block) {
 
   block.appendChild(navWrapper);
 
-  // Insert bg-fluid1 after header
-  const headerEl = block.closest('header');
-  if (headerEl) {
-    headerEl.after(bgFluid);
-  }
+  // Insert bg-fluid1 inside header block to avoid layout shift
+  block.appendChild(bgFluid);
 }

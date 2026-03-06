@@ -97,6 +97,13 @@ body.appear {
 
 header {
   height: auto;
+  min-height: 310px;
+}
+
+@media (width >= 900px) {
+  header {
+    min-height: 370px;
+  }
 }
 
 header .header,

@@ -212,7 +212,6 @@ export function decorateMain(main) {
     rsBtn.id = 'readspeaker_button1';
     rsBtn.className = 'rs_skip rsbtn rs_preserve mega_toggle';
     const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
     rsBtn.innerHTML = `
       <button class="rsbtn_tooltoggle" title="Menú de webReader" aria-label="Menú de webReader" aria-expanded="false">
         <span class="rsicn rsicn-menu" aria-hidden="true"></span>
@@ -256,11 +255,13 @@ function buildScrollButtons() {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  document.documentElement.lang = 'es';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    const heroImg = main.querySelector('img');
+    if (heroImg) heroImg.setAttribute('fetchpriority', 'high');
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

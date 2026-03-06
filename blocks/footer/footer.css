@@ -39,6 +39,9 @@ footer .footer ul {
 footer .footer a:any-link {
   color: #fff;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
 }
 
 footer .footer a:any-link:hover {
